@@ -1,0 +1,14 @@
+!!! 5
+%html
+  %head
+    %title MyFavouriteBooks!
+    = stylesheet_link_tag 'application'
+    = javascript_pack_tag 'application'
+    = csrf_meta_tags
+
+  %body
+    #main
+      = yield
+    -# this goes just inside %body:
+    - if flash[:notice] #notice.message= flash[:notice]
+    - elsif flash[:warning] #warning.message= flash[:warning]

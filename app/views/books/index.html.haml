@@ -1,0 +1,21 @@
+-#  This file is app/views/books/index.html.haml
+%h1 All Books
+
+%table#books
+  %thead
+    %tr
+      %th Book Title
+      %th Genre
+      %th Description
+      %th ISBN number
+      %th Publish Date
+      %th More Info
+  %tbody
+    - @books.each do |book|
+      %tr
+        %td= book.title
+        %td= book.genre
+        %td= book.description
+        %td= book.ISBN_number
+        %td= book.publish_date
+        %td= link_to "More about #{book.title}", book_path(book)
