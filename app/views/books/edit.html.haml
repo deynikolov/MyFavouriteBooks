@@ -2,36 +2,12 @@
 
 = form_tag book_path(@book), :method => :put do
 
-  = label :book, :title, 'Title'
-  = text_field :book, 'title'
+  - unless @book.errors.empty?
+    #warning
+      Errors prevented this book from being #{controller.action_name}d:
+      %ul
+        - @book.errors.full_messages.each do |error|
+          %li= error
 
-  = label :book, :genre, 'Genre'
-  = select :book, :genre, ['Science fiction','Drama','Action and Adventure','Romance','Mystery','Horror']
-
-  = label :book, :ISBN_number, 'ISBN_number'
-  = text_field :book, 'ISBN_number'
-
-  = label :book, :publish_date, 'Published On'
-  = date_select :book, :publish_date
-
-  = submit_tag 'Save Changes'
-
--# edit.html.haml using partial
-
-%h2 Edit Existing Book
-
-= form_tag book_path(@book), :method => :put do
   = render :partial => 'book_form'
   = submit_tag 'Update Book Info'
-  
-= form_tag book_path(@book), :method => :put do
-
- - unless @book.errors.empty?
-   #warning
-     Errors prevented this book from being #{controller.action_name}d:
-     %ul
-       - @book.errors.full_messages.each do |error|
-         %li= error
-
- = label :book, :title, 'Title'
- = text_field :book, 'title'
