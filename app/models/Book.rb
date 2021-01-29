@@ -20,4 +20,14 @@ class Book < ApplicationRecord
   def self.similar_books(book)
     Book.where author: book.author
   end
+
+  def search_similar_books
+  @book = Book.find(params[:id])
+  if @book.author.nil? || @book.author.empty?
+    flash[:warning]= "'#{@book.title}' has no author info"
+    redirect_to books_path
+  else
+    @books = Book.similar_books(@book)
+  end
+end
 end
